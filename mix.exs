@@ -6,7 +6,19 @@ defmodule KvUmbrella.MixProject do
       apps_path: "apps",
       version: "0.1.0",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      releases: [
+        umbrella_node: [
+          version: "0.0.1",
+          applications: [kv_server: :permanent, kv: :permanent],
+          cookie: "weknoweachother"
+        ],
+        secondary_bucket_node: [
+          version: "0.0.1",
+          applications: [kv: :permanent],
+          cookie: "weknoweachother"
+        ]
+      ]
     ]
   end
 
